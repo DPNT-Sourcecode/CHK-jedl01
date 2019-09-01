@@ -46,8 +46,8 @@ public class CheckoutSolution {
             Integer itemQuantity = orderedSkus.get(c);
             Integer itemPrice = prices.get(c);
             if (offers.containsKey(c)) {
-                Offer offer = offers.get(c);
-                totalPrice += ( (itemQuantity / offer.getQuantity()) * offer.getPrice()) +
+                PriceOffer offer = (PriceOffer) offers.get(c);
+                totalPrice += ( (itemQuantity / offer.getQuantity()) * offer.getNewPrice()) +
                         ( (itemQuantity % offer.getQuantity()) * itemPrice);
             } else {
                 totalPrice += itemQuantity * itemPrice;
@@ -56,11 +56,6 @@ public class CheckoutSolution {
 
         return totalPrice;
     }
-
-
-
-    private class CostOffer extends Offer {
-
-    }
 }
+
 
