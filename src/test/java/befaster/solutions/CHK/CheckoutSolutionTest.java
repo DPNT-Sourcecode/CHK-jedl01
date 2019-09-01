@@ -24,7 +24,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_withEItemAndSeveralBs_shouldApplyOneFreeB() {
+    public void checkout_with2EAnd2B_shouldApply1FreeBOffer() {
         // when
         Integer result = checkout.checkout("EEBB");
 
@@ -33,7 +33,7 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_withEItemAndEnoughRemainingBsForOffer_shouldApplyOneFreeBAndOfferOnB() {
+    public void checkout_with2EAnd3B_shouldApply1FreeBAndOfferOnB() {
         // when
         Integer result = checkout.checkout("EEBBB");
 
@@ -42,11 +42,56 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_withTwoEsOfferItemAndEnoughRemainingBsForOffer_shouldApplyOneFreeBAndOfferOnB() {
+    public void checkout_with4EAnd3B_shouldApply2FreeB() {
         // when
         Integer result = checkout.checkout("EEEEBBB");
 
         // then
         assertEquals(Integer.valueOf(190), result);
+    }
+
+    @Test
+    public void checkout_with2F_shouldNotApply1FreeF() {
+        // when
+        Integer result = checkout.checkout("FF");
+
+        // then
+        assertEquals(Integer.valueOf(20), result);
+    }
+
+    @Test
+    public void checkout_with3F_shouldApply1FreeF() {
+        // when
+        Integer result = checkout.checkout("FFF");
+
+        // then
+        assertEquals(Integer.valueOf(20), result);
+    }
+
+    @Test
+    public void checkout_with4F_shouldApply1FreeF() {
+        // when
+        Integer result = checkout.checkout("FFFF");
+
+        // then
+        assertEquals(Integer.valueOf(30), result);
+    }
+
+    @Test
+    public void checkout_with6F_shouldApply2FreeF() {
+        // when
+        Integer result = checkout.checkout("FFFFFF");
+
+        // then
+        assertEquals(Integer.valueOf(40), result);
+    }
+
+    @Test
+    public void checkout_with8F_shouldApply2FreeF() {
+        // when
+        Integer result = checkout.checkout("FFFFFFFF");
+
+        // then
+        assertEquals(Integer.valueOf(60), result);
     }
 }
