@@ -2,17 +2,17 @@ package befaster.solutions.CHK;
 
 public class PriceOffer extends Offer implements Comparable<PriceOffer> {
 
-    private Integer newPrice;
+    private Integer offerPrice;
     private Integer offerApplicationOrder;
 
-    public PriceOffer(Integer quantity, Integer newPrice, Integer offerApplicationOrder) {
-        super(quantity);
-        this.newPrice = newPrice;
+    public PriceOffer(Integer offerRequiredQuantity, Integer offerPrice, Integer offerApplicationOrder) {
+        super(offerRequiredQuantity);
+        this.offerPrice = offerPrice;
         this.offerApplicationOrder = offerApplicationOrder;
     }
 
-    public Integer getNewPrice() {
-        return newPrice;
+    public Integer getOfferPrice() {
+        return offerPrice;
     }
 
     public Integer getOfferApplicationOrder() {
@@ -20,7 +20,7 @@ public class PriceOffer extends Offer implements Comparable<PriceOffer> {
     }
 
     public boolean isApplicable(Integer objectQuantity) {
-        return objectQuantity >= getQuantity();
+        return objectQuantity >= getOfferRequiredQuantity();
     }
 
     @Override
@@ -28,3 +28,4 @@ public class PriceOffer extends Offer implements Comparable<PriceOffer> {
         return offerApplicationOrder.compareTo(o.offerApplicationOrder);
     }
 }
+

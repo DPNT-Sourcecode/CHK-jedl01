@@ -1,11 +1,11 @@
 package befaster.solutions.CHK;
 
-public class CrossProductOffer extends Offer {
+public class CrossOffer extends Offer {
 
     private Character freeItem;
 
-    public CrossProductOffer(Integer quantity, Character freeItem) {
-        super(quantity);
+    public CrossOffer(Integer offerRequiredQuantity, Character freeItem) {
+        super(offerRequiredQuantity);
         this.freeItem = freeItem;
     }
 
@@ -13,3 +13,4 @@ public class CrossProductOffer extends Offer {
         return freeItem;
     }
 }
+

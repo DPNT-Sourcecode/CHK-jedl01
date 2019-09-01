@@ -5,7 +5,7 @@ import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private Map<Character, Integer> prices = new HashMap(){{
+    private Map<Character, Integer> itemsPrice = new HashMap(){{
         put('A', 50);
         put('B', 30);
         put('C', 20);
@@ -14,7 +14,7 @@ public class CheckoutSolution {
         put('F', 10);
     }} ;
 
-    private Map<Character, List<PriceOffer>> offers = new HashMap(){{
+    private Map<Character, List<PriceOffer>> itemPriceOffers = new HashMap(){{
         put('A', Arrays.asList(
                 new PriceOffer(3, 130, 1),
                 new PriceOffer(5, 200, 0)
@@ -27,59 +27,62 @@ public class CheckoutSolution {
         ));
     }};
 
-    private Map<Character, CrossProductOffer> crossPromotions = new HashMap(){{
-        put('E', new CrossProductOffer(2, 'B'));
+    private Map<Character, CrossOffer> itemCrossOffers = new HashMap(){{
+        put('E', new CrossOffer(2, 'B'));
     }};
 
     public Integer checkout(String skus) {
-        Map<Character, Integer> orderedSkus = skus.chars().boxed()
+        Map<Character, Integer> itemsWithQuantity = skus
+                .chars().boxed()
                 .collect(Collectors.toMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
 
-        int totalPrice = 0;
+        for (Character item : itemsWithQuantity.keySet()) {
+            if (itemCrossOffers.containsKey(item)) {
+                // This item will trigger a cross item offer (another item free)
+                int itemQuantity = itemsWithQuantity.get(item);
+                CrossOffer crossItemOffer = itemCrossOffers.get(item);
 
-        for (Character item : orderedSkus.keySet()) {
-            if (crossPromotions.containsKey(item)) {
-                int itemQuantity = orderedSkus.get(item);
-                CrossProductOffer offer = crossPromotions.get(item);
+                int nbItemsBeforeCrossOffer = itemsWithQuantity.getOrDefault(crossItemOffer.getFreeItem(), 0);
+                int nbItemsDeductible =  itemQuantity / crossItemOffer.getOfferRequiredQuantity();
 
-                if (orderedSkus.containsKey(offer.getFreeItem())) {
-                    int numberOfItemBeforePromotion = orderedSkus.get(offer.getFreeItem());
-                    int numberOfFreeItemDeductible =  itemQuantity / offer.getQuantity();
+                int nbItemsAfterCrossOffer = Math.max(0, nbItemsBeforeCrossOffer - nbItemsDeductible);
 
-                    int numberOfItemAfterPromotion = Math.max(0, numberOfItemBeforePromotion - numberOfFreeItemDeductible);
-
-                    if (numberOfItemAfterPromotion == 0) {
-                        orderedSkus.remove(offer.getFreeItem());
-                    } else {
-                        orderedSkus.put(offer.getFreeItem(), numberOfItemAfterPromotion);
-                    }
+                if (nbItemsAfterCrossOffer == 0 && itemsWithQuantity.containsKey(crossItemOffer.getFreeItem())) {
+                    itemsWithQuantity.remove(crossItemOffer.getFreeItem());
+                } else {
+                    itemsWithQuantity.put(crossItemOffer.getFreeItem(), nbItemsAfterCrossOffer);
                 }
             }
         }
 
-        for (Character item : orderedSkus.keySet()) {
-            if (!prices.containsKey(item)) {
+        int checkoutPrice = 0;
+        for (Character item : itemsWithQuantity.keySet()) {
+            if (!itemsPrice.containsKey(item)) {
                 return -1;
             }
 
-            int itemQuantity = orderedSkus.get(item);
-            int itemPrice = prices.get(item);
-            if (offers.containsKey(item)) {
-                List<PriceOffer> itemOffers = offers.get(item);
-                Collections.sort(itemOffers);
+            int itemQuantity = itemsWithQuantity.get(item);
+            int itemUnitPrice = itemsPrice.get(item);
 
-                for (PriceOffer offer: itemOffers) {
+            if (itemPriceOffers.containsKey(item)) {
+                List<PriceOffer> currentItemOffers = itemPriceOffers.get(item);
+                Collections.sort(currentItemOffers);
+
+                for (PriceOffer offer: currentItemOffers) {
+
                     while(offer.isApplicable(itemQuantity)) {
-                        totalPrice += offer.getNewPrice();
-                        itemQuantity -= offer.getQuantity();
+                        checkoutPrice += offer.getOfferPrice();
+                        itemQuantity -= offer.getOfferRequiredQuantity();
                     }
                 }
             }
 
-            totalPrice += itemQuantity * itemPrice;
+            // Remaining items without any offer
+            checkoutPrice += itemQuantity * itemUnitPrice;
         }
 
-        return totalPrice;
+        return checkoutPrice;
     }
 }
+
 

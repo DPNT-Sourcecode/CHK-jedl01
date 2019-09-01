@@ -2,13 +2,14 @@ package befaster.solutions.CHK;
 
 public abstract class Offer {
 
-    private Integer quantity;
+    private Integer offerRequiredQuantity;
 
-    public Offer(Integer quantity) {
-        this.quantity = quantity;
+    public Offer(Integer offerRequiredQuantity) {
+        this.offerRequiredQuantity = offerRequiredQuantity;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getOfferRequiredQuantity() {
+        return offerRequiredQuantity;
     }
 }
+
