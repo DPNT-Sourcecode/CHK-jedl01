@@ -209,6 +209,42 @@ public class CheckoutSolutionTest {
         Integer result = checkout.checkout("RRRRQQ");
 
         // then
-        assertEquals(Integer.valueOf(200), result);
+        assertEquals(Integer.valueOf(230), result);
+    }
+
+    @Test
+    public void checkout_with3U_shouldApplyOffer1FreeU() {
+        // when
+        Integer result = checkout.checkout("UUU");
+
+        // then
+        assertEquals(Integer.valueOf(80), result);
+    }
+
+    @Test
+    public void checkout_with4U_shouldApplyOffer1FreeU() {
+        // when
+        Integer result = checkout.checkout("UUUU");
+
+        // then
+        assertEquals(Integer.valueOf(120), result);
+    }
+
+    @Test
+    public void checkout_with5V_shouldApply2DifferentOffers() {
+        // when
+        Integer result = checkout.checkout("VVVVV");
+
+        // then
+        assertEquals(Integer.valueOf(220), result);
+    }
+
+    @Test
+    public void checkout_with6V_shouldApply2DifferentOffersAnd1SinglePrice() {
+        // when
+        Integer result = checkout.checkout("VVVVVV");
+
+        // then
+        assertEquals(Integer.valueOf(260), result);
     }
 }
