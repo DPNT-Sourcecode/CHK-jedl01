@@ -1,7 +1,6 @@
 package befaster.solutions.CHK;
 
-import befaster.runner.SolutionNotImplementedException;
-
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,12 +13,13 @@ public class CheckoutSolution {
         put("D", 15);
     }} ;
 
-    private Map<String, Offer> offers = new HashMap<>(){{
-        put("A", new Offer())
+    private Map<String, Offer> offers = new HashMap(){{
+        put("A", new Offer(3, 130));
+        put("B", new Offer(2, 45));
     }};
 
     public Integer checkout(String skus) {
-        throw new SolutionNotImplementedException();
+        skus.chars().mapToObj()
     }
 
     private class Offer {
