@@ -13,4 +13,3 @@ public class PriceOffer extends Offer {
         return newPrice;
     }
 }
-
