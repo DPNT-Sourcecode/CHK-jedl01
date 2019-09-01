@@ -11,6 +11,7 @@ public class CheckoutSolution {
         put('C', 20);
         put('D', 15);
         put('E', 40);
+        put('F', 10);
     }} ;
 
     private Map<Character, List<PriceOffer>> offers = new HashMap(){{
@@ -20,6 +21,9 @@ public class CheckoutSolution {
         ));
         put('B', Arrays.asList(
                 new PriceOffer(2, 45, 0)
+        ));
+        put('F', Arrays.asList(
+                new PriceOffer(3, 20, 0)
         ));
     }};
 
@@ -78,3 +82,4 @@ public class CheckoutSolution {
         return totalPrice;
     }
 }
+

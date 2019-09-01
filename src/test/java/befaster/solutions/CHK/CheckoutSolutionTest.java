@@ -15,12 +15,12 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void test_check() {
+    public void checkout_shouldApplyBasicOffers() {
         // when
-        Integer result = checkout.checkout("EEB");
+        Integer result = checkout.checkout("BBD");
 
         // then
-        assertEquals(Integer.valueOf(80), result);
+        assertEquals(Integer.valueOf(60), result);
     }
 
     @Test
