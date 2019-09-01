@@ -19,6 +19,10 @@ public class PriceOffer extends Offer implements Comparable<PriceOffer> {
         return offerApplicationOrder;
     }
 
+    public boolean isApplicable(Integer objectQuantity) {
+        return objectQuantity >= getQuantity();
+    }
+
     @Override
     public int compareTo(PriceOffer o) {
         return offerApplicationOrder.compareTo(o.offerApplicationOrder);

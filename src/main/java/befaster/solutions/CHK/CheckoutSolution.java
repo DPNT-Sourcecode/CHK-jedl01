@@ -14,8 +14,8 @@ public class CheckoutSolution {
 
     private Map<Character, List<PriceOffer>> offers = new HashMap(){{
         put('A', Arrays.asList(
-                new PriceOffer(3, 130, 0),
-                new PriceOffer(5, 200, 1)
+                new PriceOffer(3, 130, 1),
+                new PriceOffer(5, 200, 0)
         ));
         put('B', Arrays.asList(
                 new PriceOffer(2, 45, 0)
@@ -57,19 +57,21 @@ public class CheckoutSolution {
                 return -1;
             }
 
-            Integer itemQuantity = orderedSkus.get(item);
-            Integer itemPrice = prices.get(item);
+            int itemQuantity = orderedSkus.get(item);
+            int itemPrice = prices.get(item);
             if (offers.containsKey(item)) {
                 List<PriceOffer> itemOffers = offers.get(item);
-                Collectors.so
+                Collections.sort(itemOffers);
 
-                ;
-                PriceOffer offer = (PriceOffer) offers.get(item);
-                totalPrice += ( (itemQuantity / offer.getQuantity()) * offer.getNewPrice()) +
-                        ( (itemQuantity % offer.getQuantity()) * itemPrice);
-            } else {
-                totalPrice += itemQuantity * itemPrice;
+                for (PriceOffer offer: itemOffers) {
+                    while(offer.isApplicable(itemQuantity)) {
+                        totalPrice += offer.getNewPrice();
+                        itemQuantity -= offer.getQuantity();
+                    }
+                }
             }
+
+            totalPrice += itemQuantity * itemPrice;
         }
 
         return totalPrice;

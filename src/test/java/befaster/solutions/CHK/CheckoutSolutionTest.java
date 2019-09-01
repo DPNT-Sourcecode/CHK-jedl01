@@ -12,10 +12,10 @@ public class CheckoutSolutionTest {
         CheckoutSolution checkout = new CheckoutSolution();
 
         // when
-        Integer result = checkout.checkout("AAaBBAADC");
+        Integer result = checkout.checkout("AAAAAA");
 
         // then
-        assertEquals(Integer.valueOf(50), result);
+        assertEquals(Integer.valueOf(250), result);
     }
 
 }
