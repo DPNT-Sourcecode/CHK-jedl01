@@ -28,6 +28,3 @@ public class PriceOffer extends Offer implements Comparable<PriceOffer> {
         return offerApplicationOrder.compareTo(o.offerApplicationOrder);
     }
 }
-
-
-

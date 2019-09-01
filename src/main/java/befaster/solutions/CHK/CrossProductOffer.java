@@ -13,4 +13,3 @@ public class CrossProductOffer extends Offer {
         return freeItem;
     }
 }
-
