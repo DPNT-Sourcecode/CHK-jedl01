@@ -12,4 +12,3 @@ public abstract class Offer {
         return offerRequiredQuantity;
     }
 }
-

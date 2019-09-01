@@ -13,4 +13,3 @@ public class CrossOffer extends Offer {
         return freeItem;
     }
 }
-
