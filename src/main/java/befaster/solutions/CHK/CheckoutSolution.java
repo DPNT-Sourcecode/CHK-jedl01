@@ -19,8 +19,8 @@ public class CheckoutSolution {
     }};
 
     public Integer checkout(String skus) {
-        Map<Character, Integer> orderedSkus = skus.chars()
-                .mapToObj(i -> (char))
+        Map<Character, Integer> orderedSkus = skus.chars().boxed()
+                .map(i -> (char) i)
                 .collect(Collectors.toMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
 
         for (Character c : orderedSkus.keySet()) {
@@ -49,6 +49,7 @@ public class CheckoutSolution {
         }
     }
 }
+
 
 
 
