@@ -123,11 +123,92 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_with8F_shouldApply2FreeF() {
+    public void checkout_with3N() {
         // when
-        Integer result = checkout.checkout("FFFFFFFF");
+        Integer result = checkout.checkout("NNN");
 
         // then
-        assertEquals(Integer.valueOf(60), result);
+        assertEquals(Integer.valueOf(120), result);
+    }
+
+    @Test
+    public void checkout_with3N1M_shouldApply1FreeM() {
+        // when
+        Integer result = checkout.checkout("NNNM");
+
+        // then
+        assertEquals(Integer.valueOf(120), result);
+    }
+
+    @Test
+    public void checkout_with3N2M_shouldApply1FreeM() {
+        // when
+        Integer result = checkout.checkout("NNNMM");
+
+        // then
+        assertEquals(Integer.valueOf(135), result);
+    }
+
+    @Test
+    public void checkout_with5P_shouldApplyOffer() {
+        // when
+        Integer result = checkout.checkout("PPPPP");
+
+        // then
+        assertEquals(Integer.valueOf(200), result);
+    }
+
+    @Test
+    public void checkout_with6P_shouldApplyOffer() {
+        // when
+        Integer result = checkout.checkout("PPPPPP");
+
+        // then
+        assertEquals(Integer.valueOf(250), result);
+    }
+
+    @Test
+    public void checkout_with6Q_shouldApplyOfferTwice() {
+        // when
+        Integer result = checkout.checkout("QQQQQQ");
+
+        // then
+        assertEquals(Integer.valueOf(160), result);
+    }
+
+    @Test
+    public void checkout_with4Q_shouldApplyOffer() {
+        // when
+        Integer result = checkout.checkout("QQQQ");
+
+        // then
+        assertEquals(Integer.valueOf(110), result);
+    }
+
+    @Test
+    public void checkout_with3R1Q_shouldApplyOffer1FreeQ() {
+        // when
+        Integer result = checkout.checkout("RRRQ");
+
+        // then
+        assertEquals(Integer.valueOf(150), result);
+    }
+
+    @Test
+    public void checkout_with4R1Q_shouldApplyOffer1FreeQ() {
+        // when
+        Integer result = checkout.checkout("RRRRQ");
+
+        // then
+        assertEquals(Integer.valueOf(200), result);
+    }
+
+    @Test
+    public void checkout_with4R2Q_shouldApplyOffer1FreeQ() {
+        // when
+        Integer result = checkout.checkout("RRRRQQ");
+
+        // then
+        assertEquals(Integer.valueOf(200), result);
     }
 }
