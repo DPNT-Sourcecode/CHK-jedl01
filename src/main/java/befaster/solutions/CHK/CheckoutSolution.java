@@ -19,7 +19,7 @@ public class CheckoutSolution {
     }};
 
     public Integer checkout(String skus) {
-        Map<Character, Integer> orderedSkus = skus.toUpperCase().chars().boxed()
+        Map<Character, Integer> orderedSkus = skus.chars().boxed()
                 .collect(Collectors.toMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
 
         int totalPrice = 0;
@@ -60,3 +60,4 @@ public class CheckoutSolution {
         }
     }
 }
+
