@@ -1,6 +1,6 @@
 package befaster.solutions.CHK;
 
-public class Offer {
+public abstract class Offer {
 
     private Integer quantity;
 
@@ -12,3 +12,4 @@ public class Offer {
         return quantity;
     }
 }
+

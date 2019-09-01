@@ -1,14 +1,16 @@
 package befaster.solutions.CHK;
 
-public class Offer {
+public class PriceOffer extends Offer {
 
-    private Integer quantity;
+    private Integer newPrice;
 
-    public Offer(Integer quantity) {
-        this.quantity = quantity;
+    public PriceOffer(Integer quantity, Integer newPrice) {
+        super(quantity);
+        this.newPrice = newPrice;
     }
 
-    public Integer getQuantity() {
-        return quantity;
+    public Integer getNewPrice() {
+        return newPrice;
     }
 }
+

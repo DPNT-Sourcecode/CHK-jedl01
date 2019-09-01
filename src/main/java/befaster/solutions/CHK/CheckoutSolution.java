@@ -14,8 +14,12 @@ public class CheckoutSolution {
     }} ;
 
     private Map<Character, Offer> offers = new HashMap(){{
-        put('A', new Offer(3, 130));
-        put('B', new Offer(2, 45));
+        put('A', new PriceOffer(3, 130));
+        put('B', new PriceOffer(2, 45));
+    }};
+
+    private Map<Character, Character> crossPromotion = new HashMap(){{
+        put('E', 'B');
     }};
 
     public Integer checkout(String skus) {
@@ -23,6 +27,17 @@ public class CheckoutSolution {
                 .collect(Collectors.toMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
 
         int totalPrice = 0;
+
+        for (Character c : orderedSkus.keySet()) {
+            if (crossPromotion.containsKey(c)) {
+                Character reducedItem = crossPromotion.get(c);
+
+                if (orderedSkus.containsKey(crossPromotion)) {
+
+                }
+            }
+        }
+
         for (Character c : orderedSkus.keySet()) {
             if (!prices.containsKey(c)) {
                 return -1;
@@ -42,21 +57,10 @@ public class CheckoutSolution {
         return totalPrice;
     }
 
-    private class Offer {
-        private Integer quantity;
-        private Integer price;
 
-        public Offer(Integer quantity, Integer price) {
-            this.quantity = quantity;
-            this.price = price;
-        }
 
-        public Integer getQuantity() {
-            return quantity;
-        }
+    private class CostOffer extends Offer {
 
-        public Integer getPrice() {
-            return price;
-        }
     }
 }
+
