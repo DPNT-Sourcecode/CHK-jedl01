@@ -1,21 +1,22 @@
 package befaster.solutions.CHK;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private Map<Character, Integer> prices = new HashMap(){{
+    private Map<> prices = new HashMap(){{
         put('A', 50);
         put('B', 30);
         put('C', 20);
         put('D', 15);
     }} ;
 
-    private Map<Character, Offer> offers = new HashMap(){{
-        put('A', new PriceOffer(3, 130));
-        put('B', new PriceOffer(2, 45));
+    private Map<> offers = new HashMap(){{
+        put('A', Arrays.asList(new PriceOffer(3, 130)));
+        put('B', new PriceOffer(2, 45, 0));
     }};
 
     private Map<Character, CrossProductOffer> crossPromotions = new HashMap(){{
@@ -63,4 +64,5 @@ public class CheckoutSolution {
         return totalPrice;
     }
 }
+
 
