@@ -45,6 +45,10 @@ public class CheckoutSolution {
         put('F', Arrays.asList(
                 new PriceOffer(3, 20, 0)
         ));
+        put('H', Arrays.asList(
+                new PriceOffer(5, 45, 0),
+                new PriceOffer(10, 20, 0)
+        ));
     }};
 
     private Map<Character, CrossOffer> itemCrossOffers = new HashMap(){{
@@ -104,4 +108,5 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
