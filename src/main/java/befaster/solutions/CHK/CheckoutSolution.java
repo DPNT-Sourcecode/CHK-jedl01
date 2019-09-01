@@ -20,7 +20,12 @@ public class CheckoutSolution {
     }};
 
     public Integer checkout(String skus) {
-        Map<Character, In>= skus.chars().mapToObj(i -> (char) i).collect(c -> Collectors.groupingBy(c));
+        Map<Character, Integer> orderedSkus= skus.chars().boxed()
+                .collect(Collectors.toMap(
+                        k -> (char) k.intValue(),
+                        v -> 1,
+                        Integer::sum))
+                );
     }
 
     private class Offer {
@@ -41,5 +46,6 @@ public class CheckoutSolution {
         }
     }
 }
+
 
 
