@@ -36,23 +36,31 @@ public class CheckoutSolution {
 
     private Map<Character, List<PriceOffer>> itemPriceOffers = new HashMap(){{
         put('A', Arrays.asList(
-                new PriceOffer(3, 130, 1),
-                new PriceOffer(5, 200, 0)
+                new PriceOffer(3, 130),
+                new PriceOffer(5, 200)
         ));
         put('B', Arrays.asList(
-                new PriceOffer(2, 45, 0)
+                new PriceOffer(2, 45)
         ));
         put('F', Arrays.asList(
-                new PriceOffer(3, 20, 0)
+                new PriceOffer(3, 20)
         ));
         put('H', Arrays.asList(
-                new PriceOffer(5, 45, 0),
-                new PriceOffer(10, 20, 0)
+                new PriceOffer(5, 45),
+                new PriceOffer(10, 80)
+        ));
+        put('K', Arrays.asList(
+                new PriceOffer(2, 150)
+        ));
+        put('P', Arrays.asList(
+                new PriceOffer(5, 200)
         ));
     }};
 
     private Map<Character, CrossOffer> itemCrossOffers = new HashMap(){{
         put('E', new CrossOffer(2, 'B'));
+        put('N', new CrossOffer(3, 'M'));
+        put('R', new CrossOffer(3, 'Q'));
     }};
 
     public Integer checkout(String skus) {
@@ -108,5 +116,6 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
