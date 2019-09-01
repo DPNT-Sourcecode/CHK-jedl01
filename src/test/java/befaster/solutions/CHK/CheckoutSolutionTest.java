@@ -87,6 +87,42 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void checkout_with10H_shouldApply10HOffer() {
+        // when
+        Integer result = checkout.checkout("HHHHHHHHHH");
+
+        // then
+        assertEquals(Integer.valueOf(80), result);
+    }
+
+    @Test
+    public void checkout_with11H_shouldApply10HOffer() {
+        // when
+        Integer result = checkout.checkout("HHHHHHHHHHH");
+
+        // then
+        assertEquals(Integer.valueOf(90), result);
+    }
+
+    @Test
+    public void checkout_with2K_shouldApply2KOffer() {
+        // when
+        Integer result = checkout.checkout("KK");
+
+        // then
+        assertEquals(Integer.valueOf(150), result);
+    }
+
+    @Test
+    public void checkout_with3K_shouldApply2KOffer() {
+        // when
+        Integer result = checkout.checkout("KKK");
+
+        // then
+        assertEquals(Integer.valueOf(230), result);
+    }
+
+    @Test
     public void checkout_with8F_shouldApply2FreeF() {
         // when
         Integer result = checkout.checkout("FFFFFFFF");
