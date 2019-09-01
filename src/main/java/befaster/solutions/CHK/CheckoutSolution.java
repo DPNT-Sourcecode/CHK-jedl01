@@ -1,22 +1,25 @@
 package befaster.solutions.CHK;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private Map<> prices = new HashMap(){{
+    private Map<Character, Integer> prices = new HashMap(){{
         put('A', 50);
         put('B', 30);
         put('C', 20);
         put('D', 15);
     }} ;
 
-    private Map<> offers = new HashMap(){{
-        put('A', Arrays.asList(new PriceOffer(3, 130)));
-        put('B', new PriceOffer(2, 45, 0));
+    private Map<Character, List<PriceOffer>> offers = new HashMap(){{
+        put('A', Arrays.asList(
+                new PriceOffer(3, 130, 0),
+                new PriceOffer(5, 200, 1)
+        ));
+        put('B', Arrays.asList(
+                new PriceOffer(2, 45, 0)
+        ));
     }};
 
     private Map<Character, CrossProductOffer> crossPromotions = new HashMap(){{
@@ -40,7 +43,11 @@ public class CheckoutSolution {
 
                     int numberOfItemAfterPromotion = Math.max(0, numberOfItemBeforePromotion - numberOfFreeItemDeductible);
 
-                    orderedSkus.put(offer.getFreeItem(), numberOfItemAfterPromotion);
+                    if (numberOfItemAfterPromotion == 0) {
+                        orderedSkus.remove(offer.getFreeItem());
+                    } else {
+                        orderedSkus.put(offer.getFreeItem(), numberOfItemAfterPromotion);
+                    }
                 }
             }
         }
@@ -53,6 +60,10 @@ public class CheckoutSolution {
             Integer itemQuantity = orderedSkus.get(item);
             Integer itemPrice = prices.get(item);
             if (offers.containsKey(item)) {
+                List<PriceOffer> itemOffers = offers.get(item);
+                Collectors.so
+
+                ;
                 PriceOffer offer = (PriceOffer) offers.get(item);
                 totalPrice += ( (itemQuantity / offer.getQuantity()) * offer.getNewPrice()) +
                         ( (itemQuantity % offer.getQuantity()) * itemPrice);
@@ -64,5 +75,6 @@ public class CheckoutSolution {
         return totalPrice;
     }
 }
+
 
 

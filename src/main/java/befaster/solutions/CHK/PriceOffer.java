@@ -1,6 +1,6 @@
 package befaster.solutions.CHK;
 
-public class PriceOffer extends Offer implements Comparable {
+public class PriceOffer extends Offer implements Comparable<PriceOffer> {
 
     private Integer newPrice;
     private Integer offerApplicationOrder;
@@ -20,11 +20,10 @@ public class PriceOffer extends Offer implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        PriceOffer that = (PriceOffer) o;
-
-        return offerApplicationOrder.compareTo(that.offerApplicationOrder);
+    public int compareTo(PriceOffer o) {
+        return offerApplicationOrder.compareTo(o.offerApplicationOrder);
     }
 }
+
 
 
