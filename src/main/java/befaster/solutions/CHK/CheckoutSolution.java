@@ -18,8 +18,8 @@ public class CheckoutSolution {
         put('B', new PriceOffer(2, 45));
     }};
 
-    private Map<Character, Character> crossPromotion = new HashMap(){{
-        put('E', 'B');
+    private Map<Character, CrossProductOffer> crossPromotions = new HashMap(){{
+        put('E', new CrossProductOffer(2, 'B'));
     }};
 
     public Integer checkout(String skus) {
@@ -28,25 +28,31 @@ public class CheckoutSolution {
 
         int totalPrice = 0;
 
-        for (Character c : orderedSkus.keySet()) {
-            if (crossPromotion.containsKey(c)) {
-                Character reducedItem = crossPromotion.get(c);
+        for (Character item : orderedSkus.keySet()) {
+            if (crossPromotions.containsKey(item)) {
+                int itemQuantity = orderedSkus.get(item);
+                CrossProductOffer offer = crossPromotions.get(item);
 
-                if (orderedSkus.containsKey(crossPromotion)) {
+                if (orderedSkus.containsKey(offer.getFreeItem())) {
+                    int numberOfItemBeforePromotion = orderedSkus.get(offer.getFreeItem());
+                    int numberOfFreeItemDeductible =  itemQuantity / offer.getQuantity();
 
+                    int numberOfItemAfterPromotion = Math.max(0, numberOfItemBeforePromotion - numberOfFreeItemDeductible);
+
+                    orderedSkus.put(offer.getFreeItem(), numberOfItemAfterPromotion);
                 }
             }
         }
 
-        for (Character c : orderedSkus.keySet()) {
-            if (!prices.containsKey(c)) {
+        for (Character item : orderedSkus.keySet()) {
+            if (!prices.containsKey(item)) {
                 return -1;
             }
 
-            Integer itemQuantity = orderedSkus.get(c);
-            Integer itemPrice = prices.get(c);
-            if (offers.containsKey(c)) {
-                PriceOffer offer = (PriceOffer) offers.get(c);
+            Integer itemQuantity = orderedSkus.get(item);
+            Integer itemPrice = prices.get(item);
+            if (offers.containsKey(item)) {
+                PriceOffer offer = (PriceOffer) offers.get(item);
                 totalPrice += ( (itemQuantity / offer.getQuantity()) * offer.getNewPrice()) +
                         ( (itemQuantity % offer.getQuantity()) * itemPrice);
             } else {
@@ -57,3 +63,4 @@ public class CheckoutSolution {
         return totalPrice;
     }
 }
+
