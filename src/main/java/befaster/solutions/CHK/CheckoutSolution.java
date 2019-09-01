@@ -10,6 +10,7 @@ public class CheckoutSolution {
         put('B', 30);
         put('C', 20);
         put('D', 15);
+        put('E', 40);
     }} ;
 
     private Map<Character, List<PriceOffer>> offers = new HashMap(){{
