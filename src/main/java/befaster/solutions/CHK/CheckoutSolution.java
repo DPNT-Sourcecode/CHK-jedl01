@@ -3,6 +3,7 @@ package befaster.solutions.CHK;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
@@ -19,7 +20,7 @@ public class CheckoutSolution {
     }};
 
     public Integer checkout(String skus) {
-        skus.chars().mapToObj()
+        Map<Character, In>= skus.chars().mapToObj(i -> (char) i).collect(c -> Collectors.groupingBy(c));
     }
 
     private class Offer {
@@ -40,4 +41,5 @@ public class CheckoutSolution {
         }
     }
 }
+
 
