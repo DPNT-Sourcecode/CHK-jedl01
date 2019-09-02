@@ -77,7 +77,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
         Map<Character, Integer> itemsWithQuantity = skus
                 .chars().boxed()
-                .collect(Collectors.toMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
+                .collect(Collectors.toConcurrentMap(k -> ((char) k.intValue()), v -> 1, Integer::sum));
 
         for (Character item : itemsWithQuantity.keySet()) {
             if (itemCrossOffers.containsKey(item)) {
@@ -127,6 +127,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
