@@ -110,26 +110,31 @@ public class CheckoutSolution {
             }
         }
 
+        int checkoutPrice = 0;
         for (BundleOffer bundleOffer: bundleOffers) {
             List<Item> bundlableItems = bundleOffer.getBundlableItems();
             Collections.sort(bundlableItems);
             Collections.reverse(bundlableItems);
 
             // Sorted by decreasing price so we add most expensive items into bundles
-            int bundlableItemsQuantity = 0;
+            Map<Item, Integer> bundlableItemsQuantityMap = new ConcurrentHashMap<>();
+            int nbItemsWaitingFullBundle = 0;
+
             for (Item item: bundlableItems) {
-                bundlableItemsQuantity += itemsWithQuantity.get(item.getItem());
+                int newItemQuantity = itemsWithQuantity.get(item.getItem());
+                int totalItemBundlable = nbItemsWaitingFullBundle + newItemQuantity;
 
-                if (bundlableItemsQuantity > bundleOffer.getOfferRequiredQuantity()) {
-                    
-                } else {
+                if (totalItemBundlable >= bundleOffer.getOfferRequiredQuantity()) {
+                    int numberOfBundles = totalItemBundlable / bundleOffer.getOfferRequiredQuantity();
 
+
+                    checkoutPrice += numberOfBunbles * bundleOffer.getBundlePrice();
                 }
+
 
             }
         }
 
-        int checkoutPrice = 0;
         for (Character item : itemsWithQuantity.keySet()) {
             if (!itemsPrice.containsKey(item)) {
                 return -1;
@@ -158,3 +163,4 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
