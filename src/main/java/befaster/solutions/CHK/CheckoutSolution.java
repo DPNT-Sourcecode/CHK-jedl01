@@ -76,7 +76,7 @@ public class CheckoutSolution {
     }};
 
     private List<BundleOffer> bundleOffers = Collections.synchronizedList(Arrays.asList(
-            new BundleOffer(3, new HashSet<>(Arrays.asList('S', 'T', 'X', 'Y', 'Z')), 45);
+            new BundleOffer(3, new HashSet<>(Arrays.asList('S', 'T', 'X', 'Y', 'Z')), 45)
     ));
 
     public Integer checkout(String skus) {
@@ -101,6 +101,10 @@ public class CheckoutSolution {
                     itemsWithQuantity.put(crossItemOffer.getFreeItem(), nbItemsAfterCrossOffer);
                 }
             }
+        }
+
+        for (BundleOffer bundleOffer: bundleOffers) {
+
         }
 
         int checkoutPrice = 0;
@@ -132,5 +136,6 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 

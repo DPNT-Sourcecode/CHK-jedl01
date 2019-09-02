@@ -110,7 +110,7 @@ public class CheckoutSolutionTest {
         Integer result = checkout.checkout("KK");
 
         // then
-        assertEquals(Integer.valueOf(150), result);
+        assertEquals(Integer.valueOf(120), result);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class CheckoutSolutionTest {
         Integer result = checkout.checkout("KKK");
 
         // then
-        assertEquals(Integer.valueOf(230), result);
+        assertEquals(Integer.valueOf(190), result);
     }
 
     @Test
