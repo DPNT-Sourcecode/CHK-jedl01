@@ -158,11 +158,3 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
-
-
-
-
-
-
-
-

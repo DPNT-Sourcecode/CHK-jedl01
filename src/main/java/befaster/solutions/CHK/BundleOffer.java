@@ -21,5 +21,3 @@ public class BundleOffer extends Offer {
         return bundlePrice;
     }
 }
-
-
