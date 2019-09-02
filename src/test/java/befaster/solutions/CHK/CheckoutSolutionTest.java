@@ -281,6 +281,15 @@ public class CheckoutSolutionTest {
         Integer result = checkout.checkout("ZZZZZZX");
 
         // then
-        assertEquals(Integer.valueOf(62), result);
+        assertEquals(Integer.valueOf(107), result);
+    }
+
+    @Test
+    public void checkout_withBasicBundleWithDifferentPriceItem2_shouldBundleExpensiveItemFirst() {
+        // when
+        Integer result = checkout.checkout("ZZZYYYX");
+
+        // then
+        assertEquals(Integer.valueOf(107), result);
     }
 }
