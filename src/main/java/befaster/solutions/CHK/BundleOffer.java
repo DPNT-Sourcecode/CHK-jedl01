@@ -1,19 +1,19 @@
 package befaster.solutions.CHK;
 
-import java.util.Set;
+import java.util.List;
 
 public class BundleOffer extends Offer {
 
-    private Set<Character> bundlableItems;
     private Integer bundlePrice;
+    private List<Item> bundlableItems;
 
-    public BundleOffer(Integer offerRequiredQuantity, Set<Character> bundlableItems, Integer bundlePrice) {
+    public BundleOffer(Integer offerRequiredQuantity, Integer bundlePrice, List<Item> bundlableItems) {
         super(offerRequiredQuantity);
-        this.bundlableItems = bundlableItems;
         this.bundlePrice = bundlePrice;
+        this.bundlableItems = bundlableItems;
     }
 
-    public Set<Character> getBundlableItems() {
+    public List<Item> getBundlableItems() {
         return bundlableItems;
     }
 
@@ -21,4 +21,5 @@ public class BundleOffer extends Offer {
         return bundlePrice;
     }
 }
+
 

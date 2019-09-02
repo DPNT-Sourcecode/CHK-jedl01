@@ -75,7 +75,15 @@ public class CheckoutSolution {
     }};
 
     private List<BundleOffer> bundleOffers = Collections.synchronizedList(Arrays.asList(
-            new BundleOffer(3, new HashSet<>(Arrays.asList('S', 'T', 'X', 'Y', 'Z')), 45)
+            new BundleOffer(3, 45,
+                    Arrays.asList(
+                        itemsPrice.get('S'),
+                        itemsPrice.get('T'),
+                        itemsPrice.get('X'),
+                        itemsPrice.get('Y'),
+                        itemsPrice.get('Z')
+                    )
+            )
     ));
 
     public Integer checkout(String skus) {
@@ -103,10 +111,13 @@ public class CheckoutSolution {
         }
 
         for (BundleOffer bundleOffer: bundleOffers) {
-            Set<Character> bundableItems = bundleOffer.getBundlableItems();
-            List<Item> bundlableItemsInCart = Collections.synchronizedList(new ArrayList<>());
+            List<Item> bundlableItems = bundleOffer.getBundlableItems();
+            Collections.sort(bundlableItems);
+            Collections.reverse(bundlableItems);
 
-            for (Character item: bundableItems) {
+            // Sorted by decreasing price so we add most expensive items into bundles
+
+            for (Item item: bundlableItems) {
 
 
             }
@@ -141,6 +152,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
