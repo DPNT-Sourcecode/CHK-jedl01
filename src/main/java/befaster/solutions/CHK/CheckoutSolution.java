@@ -122,13 +122,34 @@ public class CheckoutSolution {
 
             for (Item item: bundlableItems) {
                 int newItemQuantity = itemsWithQuantity.get(item.getItem());
-                int totalItemBundlable = nbItemsWaitingFullBundle + newItemQuantity;
 
+                int totalItemBundlable = nbItemsWaitingFullBundle + newItemQuantity;
                 if (totalItemBundlable >= bundleOffer.getOfferRequiredQuantity()) {
                     int numberOfBundles = totalItemBundlable / bundleOffer.getOfferRequiredQuantity();
+                    checkoutPrice += numberOfBundles * bundleOffer.getBundlePrice();
+
+                    // All items waiting for a full bundle are now included in a bundle
+                    // Therefore, they can be removed from cart
+                    for (Item previousItem: bundlableItemsQuantityMap.keySet()) {
+                        itemsWithQuantity.remove(previousItem.getItem());
+                    }
+                    // Cleaning bundlableItemsQuantityMap
+                    bundlableItemsQuantityMap.clear();
 
 
-                    checkoutPrice += numberOfBunbles * bundleOffer.getBundlePrice();
+                    // Adding potential extra new items that are in excess to create the bundle
+                    nbItemsWaitingFullBundle = totalItemBundlable % bundleOffer.getOfferRequiredQuantity();
+
+                    bundlableItemsQuantityMap.put(item, nbItemsWaitingFullBundle);
+
+                    // Remove number of items used from cart
+                    itemsWithQuantity.up
+
+                    // Update last
+
+                } else { // not enough items to create a bundle, save it for later
+                    nbItemsWaitingFullBundle += newItemQuantity;
+                    bundlableItemsQuantityMap.put(item, newItemQuantity);
                 }
 
 
@@ -163,4 +184,5 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
