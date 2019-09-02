@@ -26,4 +26,3 @@ public class PriceOffer extends Offer implements Comparable<PriceOffer> {
         return (getUnitPrice().compareTo(o.getUnitPrice()));
     }
 }
-

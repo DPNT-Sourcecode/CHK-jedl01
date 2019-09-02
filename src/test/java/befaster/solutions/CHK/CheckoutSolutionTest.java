@@ -248,4 +248,3 @@ public class CheckoutSolutionTest {
         assertEquals(Integer.valueOf(260), result);
     }
 }
-
