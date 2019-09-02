@@ -2,6 +2,7 @@ package befaster.solutions.CHK;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
@@ -74,6 +75,12 @@ public class CheckoutSolution {
         put('R', new CrossOffer(3, 'Q'));
     }};
 
+    private Set<BundleOffer> bundleOffers = new ConcurrentSkipListSet<>(){{
+        put('E', new CrossOffer(2, 'B'));
+        put('N', new CrossOffer(3, 'M'));
+        put('R', new CrossOffer(3, 'Q'));
+    }};
+
     public Integer checkout(String skus) {
         Map<Character, Integer> itemsWithQuantity = skus
                 .chars().boxed()
@@ -127,3 +134,4 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
