@@ -121,6 +121,10 @@ public class CheckoutSolution {
             int nbItemsWaitingFullBundle = 0;
 
             for (Item item: bundlableItems) {
+                if (!itemsWithQuantity.containsKey(item.getItem())) {
+                    continue;
+                }
+
                 int newItemQuantity = itemsWithQuantity.get(item.getItem());
 
                 int totalItemBundlable = nbItemsWaitingFullBundle + newItemQuantity;

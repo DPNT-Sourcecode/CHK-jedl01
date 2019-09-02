@@ -251,9 +251,36 @@ public class CheckoutSolutionTest {
     @Test
     public void checkout_withBasicBundle_shouldApplyBundleOffer() {
         // when
-        Integer result = checkout.checkout("ZZZZZ");
+        Integer result = checkout.checkout("ZZZ");
 
         // then
         assertEquals(Integer.valueOf(45), result);
+    }
+
+    @Test
+    public void checkout_withBasicBundleWithSamePriceItem_shouldApplyBundleOffer() {
+        // when
+        Integer result = checkout.checkout("STY");
+
+        // then
+        assertEquals(Integer.valueOf(45), result);
+    }
+
+    @Test
+    public void checkout_withBasicBundleWithDifferentPriceItem_shouldApplyBundleOffer() {
+        // when
+        Integer result = checkout.checkout("STZ");
+
+        // then
+        assertEquals(Integer.valueOf(45), result);
+    }
+
+    @Test
+    public void checkout_withBasicBundleWithDifferentPriceItem_shouldBundleExpensiveItemFirst() {
+        // when
+        Integer result = checkout.checkout("ZZZZZZX");
+
+        // then
+        assertEquals(Integer.valueOf(62), result);
     }
 }
