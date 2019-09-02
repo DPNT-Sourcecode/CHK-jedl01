@@ -17,7 +17,7 @@ public class CheckoutSolution {
         put('H', 10);
         put('I', 35);
         put('J', 60);
-        put('K', 80);
+        put('K', 70);
         put('L', 90);
         put('M', 15);
         put('N', 40);
@@ -25,14 +25,14 @@ public class CheckoutSolution {
         put('P', 50);
         put('Q', 30);
         put('R', 50);
-        put('S', 30);
+        put('S', 20);
         put('T', 20);
         put('U', 40);
         put('V', 50);
         put('W', 20);
-        put('X', 90);
-        put('Y', 10);
-        put('Z', 50);
+        put('X', 17);
+        put('Y', 20);
+        put('Z', 21);
     }} ;
 
     private Map<Character, List<PriceOffer>> itemPriceOffers = new ConcurrentHashMap(){{
@@ -127,3 +127,4 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
