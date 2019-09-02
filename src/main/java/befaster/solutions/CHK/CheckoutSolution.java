@@ -75,11 +75,9 @@ public class CheckoutSolution {
         put('R', new CrossOffer(3, 'Q'));
     }};
 
-    private Set<BundleOffer> bundleOffers = new ConcurrentSkipListSet<>(){{
-        put('E', new CrossOffer(2, 'B'));
-        put('N', new CrossOffer(3, 'M'));
-        put('R', new CrossOffer(3, 'Q'));
-    }};
+    private List<BundleOffer> bundleOffers = Collections.synchronizedList(Arrays.asList(
+            new BundleOffer(3, new HashSet<>(Arrays.asList('S', 'T', 'X', 'Y', 'Z')), 45);
+    ));
 
     public Integer checkout(String skus) {
         Map<Character, Integer> itemsWithQuantity = skus
@@ -134,4 +132,5 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
