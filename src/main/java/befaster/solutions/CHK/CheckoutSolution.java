@@ -104,8 +104,10 @@ public class CheckoutSolution {
 
         for (BundleOffer bundleOffer: bundleOffers) {
             Set<Character> bundableItems = bundleOffer.getBundlableItems();
-            Set<Item> bundlableItemsInCart = new
+            List<Item> bundlableItemsInCart = Collections.synchronizedList(new ArrayList<>());
+
             for (Character item: bundableItems) {
+
 
             }
         }
@@ -139,6 +141,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
