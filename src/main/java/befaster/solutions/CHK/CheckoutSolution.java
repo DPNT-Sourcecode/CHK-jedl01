@@ -2,38 +2,37 @@ package befaster.solutions.CHK;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentSkipListSet;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private Map<Character, Integer> itemsPrice = new ConcurrentHashMap(){{
-        put('A', 50);
-        put('B', 30);
-        put('C', 20);
-        put('D', 15);
-        put('E', 40);
-        put('F', 10);
-        put('G', 20);
-        put('H', 10);
-        put('I', 35);
-        put('J', 60);
-        put('K', 70);
-        put('L', 90);
-        put('M', 15);
-        put('N', 40);
-        put('O', 10);
-        put('P', 50);
-        put('Q', 30);
-        put('R', 50);
-        put('S', 20);
-        put('T', 20);
-        put('U', 40);
-        put('V', 50);
-        put('W', 20);
-        put('X', 17);
-        put('Y', 20);
-        put('Z', 21);
+    private Map<Character, Item> itemsPrice = new ConcurrentHashMap(){{
+        put('A', new Item('A', 50));
+        put('B', new Item('B', 30));
+        put('C', new Item('C', 20));
+        put('D', new Item('D', 15));
+        put('E', new Item('E', 40));
+        put('F', new Item('F', 10));
+        put('G', new Item('G', 20));
+        put('H', new Item('H', 10));
+        put('I', new Item('I', 35));
+        put('J', new Item('J', 60));
+        put('K', new Item('K', 70));
+        put('L', new Item('L', 90));
+        put('M', new Item('M', 15));
+        put('N', new Item('N', 40));
+        put('O', new Item('O', 10));
+        put('P', new Item('P', 50));
+        put('Q', new Item('Q', 30));
+        put('R', new Item('R', 50));
+        put('S', new Item('S', 20));
+        put('T', new Item('T', 20));
+        put('U', new Item('U', 40));
+        put('V', new Item('V', 50));
+        put('W', new Item('W', 20));
+        put('X', new Item('X', 17));
+        put('Y', new Item('Y', 20));
+        put('Z', new Item('Z', 21));
     }} ;
 
     private Map<Character, List<PriceOffer>> itemPriceOffers = new ConcurrentHashMap(){{
@@ -104,7 +103,11 @@ public class CheckoutSolution {
         }
 
         for (BundleOffer bundleOffer: bundleOffers) {
+            Set<Character> bundableItems = bundleOffer.getBundlableItems();
 
+            for (Character item: bundableItems) {
+
+            }
         }
 
         int checkoutPrice = 0;
@@ -114,7 +117,7 @@ public class CheckoutSolution {
             }
 
             int itemQuantity = itemsWithQuantity.get(item);
-            int itemUnitPrice = itemsPrice.get(item);
+            int itemUnitPrice = itemsPrice.get(item).getPrice();
 
             if (itemPriceOffers.containsKey(item)) {
                 List<PriceOffer> currentItemOffers = itemPriceOffers.get(item);
@@ -136,6 +139,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
