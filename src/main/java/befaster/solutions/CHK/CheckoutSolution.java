@@ -116,9 +116,15 @@ public class CheckoutSolution {
             Collections.reverse(bundlableItems);
 
             // Sorted by decreasing price so we add most expensive items into bundles
-
+            int bundlableItemsQuantity = 0;
             for (Item item: bundlableItems) {
+                bundlableItemsQuantity += itemsWithQuantity.get(item.getItem());
 
+                if (bundlableItemsQuantity > bundleOffer.getOfferRequiredQuantity()) {
+                    
+                } else {
+
+                }
 
             }
         }
@@ -152,6 +158,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
