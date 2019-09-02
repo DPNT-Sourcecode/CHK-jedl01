@@ -143,16 +143,11 @@ public class CheckoutSolution {
                     bundlableItemsQuantityMap.put(item, nbItemsWaitingFullBundle);
 
                     // Remove number of items used from cart
-                    itemsWithQuantity.up
-
-                    // Update last
-
+                    itemsWithQuantity.put(item.getItem(), nbItemsWaitingFullBundle);
                 } else { // not enough items to create a bundle, save it for later
                     nbItemsWaitingFullBundle += newItemQuantity;
                     bundlableItemsQuantityMap.put(item, newItemQuantity);
                 }
-
-
             }
         }
 

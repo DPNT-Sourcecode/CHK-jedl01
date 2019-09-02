@@ -247,4 +247,13 @@ public class CheckoutSolutionTest {
         // then
         assertEquals(Integer.valueOf(260), result);
     }
+
+    @Test
+    public void checkout_withBasicBundle_shouldApplyBundleOffer() {
+        // when
+        Integer result = checkout.checkout("ZZZZZ");
+
+        // then
+        assertEquals(Integer.valueOf(45), result);
+    }
 }
