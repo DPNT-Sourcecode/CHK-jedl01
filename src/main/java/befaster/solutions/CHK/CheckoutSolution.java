@@ -51,7 +51,7 @@ public class CheckoutSolution {
                 new PriceOffer(10, 80)
         ));
         put('K', Arrays.asList(
-                new PriceOffer(2, 150)
+                new PriceOffer(2, 120)
         ));
         put('P', Arrays.asList(
                 new PriceOffer(5, 200)
@@ -127,4 +127,5 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
