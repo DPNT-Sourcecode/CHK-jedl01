@@ -218,7 +218,7 @@ public class CheckoutSolutionTest {
         Integer result = checkout.checkout("UUU");
 
         // then
-        assertEquals(Integer.valueOf(80), result);
+        assertEquals(Integer.valueOf(120), result);
     }
 
     @Test
@@ -248,3 +248,4 @@ public class CheckoutSolutionTest {
         assertEquals(Integer.valueOf(260), result);
     }
 }
+

@@ -1,11 +1,12 @@
 package befaster.solutions.CHK;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
-    private Map<Character, Integer> itemsPrice = new HashMap(){{
+    private Map<Character, Integer> itemsPrice = new ConcurrentHashMap(){{
         put('A', 50);
         put('B', 30);
         put('C', 20);
@@ -34,7 +35,7 @@ public class CheckoutSolution {
         put('Z', 50);
     }} ;
 
-    private Map<Character, List<PriceOffer>> itemPriceOffers = new HashMap(){{
+    private Map<Character, List<PriceOffer>> itemPriceOffers = new ConcurrentHashMap(){{
         put('A', Arrays.asList(
                 new PriceOffer(3, 130),
                 new PriceOffer(5, 200)
@@ -59,7 +60,7 @@ public class CheckoutSolution {
                 new PriceOffer(3, 80)
         ));
         put('U', Arrays.asList(
-                new PriceOffer(3, 80)
+                new PriceOffer(4, 120)
         ));
         put('V', Arrays.asList(
                 new PriceOffer(2, 90),
@@ -67,7 +68,7 @@ public class CheckoutSolution {
         ));
     }};
 
-    private Map<Character, CrossOffer> itemCrossOffers = new HashMap(){{
+    private Map<Character, CrossOffer> itemCrossOffers = new ConcurrentHashMap(){{
         put('E', new CrossOffer(2, 'B'));
         put('N', new CrossOffer(3, 'M'));
         put('R', new CrossOffer(3, 'Q'));
@@ -126,6 +127,7 @@ public class CheckoutSolution {
         return checkoutPrice;
     }
 }
+
 
 
 
